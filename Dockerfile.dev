@@ -1,0 +1,20 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+
+RUN npm install
+
+# Going by the volume referencing in the docker-compose file, we do not need this anymore. 
+# But it is still here in case we do not wish to used docker-compose 
+COPY . .
+
+# This is to deal with [eslint] EACCES: permission denied, did not work!
+# It appears the /app/node_modules directory in the container is being accessed with error
+# So I am on using volumes to reference the entire local working directory, instead of 
+# excluding the node_modules directory in the local machine. When I use the /app/node_modules in the
+# container working directory, I get the [eslint] EACCES: permission denied error.
+USER node
+
+CMD ["npm", "run", "start"]

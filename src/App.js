@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Changed some stuff, still not working!
+          Cannot get this to deploy on AWS because it is a single container I suppose!
         </p>
         <a
           className="App-link"
